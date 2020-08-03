@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+   例如namespace="com.szh.mapper.personMapper"就是com.szh.mapper(包名)+personMapper(personMapper.xml文件去除后缀) -->
+<mapper namespace="com.fh.address.mapper.AddRessMapper">
+
+    <select id="queryaddresslist" parameterType="long" resultType="com.fh.address.vo.AddRessVo">
+        select a.id,a.name,a.phone,a.isup,
+        CONCAT(area1.name,' ',area2.name,' ',area3.name,' ',area4.name) as address
+        ,area1.name as addressname1,area2.name as addressname2,area3.name as addressname3,area4.name as addressname4 from t_address a
+        left join t_area area1 on a.address1=area1.id
+        left join t_area area2 on a.address2=area2.id
+        left join t_area area3 on a.address3=area3.id
+        left join t_area area4 on a.address4=area4.id
+        where a.userid=#{id}
+    </select>
+
+
+</mapper>
