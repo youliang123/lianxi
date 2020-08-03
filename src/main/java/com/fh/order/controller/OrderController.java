@@ -30,11 +30,11 @@ public class OrderController {
     @RequestMapping("tomintoken")
     public Map tomintoken(){
         Map mm=new HashMap();
-        String token = UUID.randomUUID().toString();
-        RedisUtil.set(token,token);
-        RedisUtil.expire(token,60*30);
+        String token2 = UUID.randomUUID().toString();
+        RedisUtil.set(token2,token2);
+        RedisUtil.expire(token2,60*30);
         mm.put("code",200);
-        mm.put("data",token);
+        mm.put("data",token2);
         return mm;
     }
 }
